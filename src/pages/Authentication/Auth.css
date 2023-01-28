@@ -1,0 +1,112 @@
+.Auth{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 4rem;
+    position: relative;
+    width: 100%;
+}
+@media screen and (max-width:768px){
+    .Auth{
+        display: flex;
+        flex-direction: column;
+    }
+    .infoForm > div{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .inputDiv{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    /* .a-right{
+        display: flex;
+        gap: 5rem;
+        margin-left: 50px;
+    } */
+}
+
+.Auth>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* left side */
+
+.a-left{
+    gap:2rem;
+}
+
+.a-left img {
+    width: 7rem;
+    height: 7rem;
+}
+
+.Webname > h1{
+    font-size: 3rem;
+    background-color: red;
+
+    /* create gradient */
+    background-image: var(--buttonBg);
+
+    /* set the background size and repeat properties */
+    background-size: 100%;
+    background-repeat: repeat;
+
+    /* use the text as a mask for the background */
+    /* this will show gradient as a text color rather */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color:transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color:transparent
+}
+
+.Webname > h6{
+    font-size: 0.85rem;
+}
+
+.infoForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2rem;
+}
+
+.infoInput{
+    border: none;
+    background-color: var(--inputColor);
+    border-radius: 8px;
+    padding: 20px;
+    outline: none;
+    flex: 1;
+}
+
+.infoForm > div {
+    display:flex;
+    gap:1rem;
+    height: 2rem;
+    width: 100%;
+}
+
+.infoButton{
+    width: 6rem;
+    height: 2rem;
+    align-self:flex-end ;
+}
+
+.authForm{
+    background-color: var(--cardColor);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.authForm>div{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
