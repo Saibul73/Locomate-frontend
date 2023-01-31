@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { getUser } from "../../Api/UserRequest";
-import coverPicture from "../../img/Cover.png"
+import coverPicture from "../../img/Cover.png";
 import FollowButton from "../FollowButton/FollowButton";
 import { createChat } from "../../Api/ChatRequest";
 
@@ -13,13 +13,17 @@ export default function ProfileCard({ location }) {
   const user = useSelector((state) => state.authReducer.authData.user);
   const navigate = useNavigate();
   const posts = useSelector((state) => state.postReducer.posts);
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const imageURL =
+    process.env.REACT_APP_PHASE === "production"
+      ? process.env.REACT_APP_PUBLIC_FOLDER_HOSTED
+      : process.env.REACT_APP_PUBLIC_FOLDER;
+  const serverPublic = imageURL;
   const params = useParams();
   const [person, setPerson] = useState([]);
 
   let id = params.id;
-  if(location !=="profilePage"){
-     id= user._id
+  if (location !== "profilePage") {
+    id = user._id;
   }
   useEffect(() => {
     const fetchPersons = async () => {
@@ -27,12 +31,12 @@ export default function ProfileCard({ location }) {
       setPerson(data);
     };
     fetchPersons();
-  },[user.following]);
+  }, [user.following]);
 
-  const handleMesssage = async()=>{
-     await  createChat(user._id,id)
-     navigate('/chat')
-  }
+  const handleMesssage = async () => {
+    await createChat(user._id, id);
+    navigate("/chat");
+  };
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
@@ -93,10 +97,16 @@ export default function ProfileCard({ location }) {
         <hr />
       </div>
 
-   {id!==user._id?<div className="userButton">
-{/* <FollowButton person={person}/> */}
-  <button className="button fc-button" onClick={handleMesssage}>Message</button>
-</div>:''}
+      {id !== user._id ? (
+        <div className="userButton">
+          {/* <FollowButton person={person}/> */}
+          <button className="button fc-button" onClick={handleMesssage}>
+            Message
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
 
       {location === "profilePage" ? (
         ""

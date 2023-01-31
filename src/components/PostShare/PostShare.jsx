@@ -8,8 +8,8 @@ import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
 import { uploadImage, uploadPost } from "../../Actions/uploadAction";
 import { toast } from "react-toastify";
-import ReactCrop from 'react-image-crop'
-import 'react-image-crop/dist/ReactCrop.css'
+import ReactCrop from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
 
 export default function PostShare() {
   const loading = useSelector((state) => state.postReducer.uploading);
@@ -18,14 +18,18 @@ export default function PostShare() {
   const { user } = useSelector((state) => state.authReducer.authData);
   const desc = useRef();
   const dispatch = useDispatch();
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const imageURL =
+    process.env.REACT_APP_PHASE === "production"
+      ? process.env.REACT_APP_PUBLIC_FOLDER_HOSTED
+      : process.env.REACT_APP_PUBLIC_FOLDER;
+  const serverPublic = imageURL;
   const [crop, setCrop] = useState({
-    unit: '%', // Can be 'px' or '%'
+    unit: "%", // Can be 'px' or '%'
     x: 25,
     y: 25,
     width: 50,
-    height: 50
-  })
+    height: 50,
+  });
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -37,7 +41,7 @@ export default function PostShare() {
       ) {
         toast.error("This file type not allowed");
         return;
-      } 
+      }
       let img = event.target.files[0];
       setImage(img);
     }
@@ -138,7 +142,7 @@ export default function PostShare() {
             {/* <ReactCrop crop={crop} onChange={(crop) => setCrop(crop)} >
 
             </ReactCrop> */}
-          <img src={URL.createObjectURL(image)} alt="" />
+            <img src={URL.createObjectURL(image)} alt="" />
           </div>
         )}
       </div>

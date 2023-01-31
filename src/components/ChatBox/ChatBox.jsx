@@ -17,13 +17,17 @@ export default function ChatBox({
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-const scroll = useRef()
+  const scroll = useRef();
+  const imageURL =
+    process.env.REACT_APP_PHASE === "production"
+      ? process.env.REACT_APP_PUBLIC_FOLDER_HOSTED
+      : process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
     if (receiveMessage !== null && receiveMessage.chatId === chat._id) {
-      setMessages([...messages,receiveMessage]);
+      setMessages([...messages, receiveMessage]);
     }
-  },[receiveMessage]);
+  }, [receiveMessage]);
 
   useEffect(() => {
     const userId = chat?.members?.find((id) => id !== currentUser);
@@ -66,7 +70,7 @@ const scroll = useRef()
 
     // send message to database
     try {
-      if(newMessage === ''){
+      if (newMessage === "") {
         return toast.error("Comment Empty");
       }
       const { data } = await addMessage(message);
@@ -82,9 +86,9 @@ const scroll = useRef()
   };
 
   // scroll to last message
-useEffect(()=>{
-  scroll.current?.scrollIntoView({behavior:"smooth"})
-},[messages])
+  useEffect(() => {
+    scroll.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <>
@@ -97,10 +101,8 @@ useEffect(()=>{
                   <img
                     src={
                       userData?.profilePicture
-                        ? process.env.REACT_APP_PUBLIC_FOLDER +
-                          userData.profilePicture
-                        : process.env.REACT_APP_PUBLIC_FOLDER +
-                          "profiledemo.webp"
+                        ? imageURL + userData.profilePicture
+                        : imageURL + "profiledemo.webp"
                     }
                     alt=""
                     className="followerImage"
@@ -120,7 +122,8 @@ useEffect(()=>{
             <div className="chat-body">
               {messages.map((message) => (
                 <>
-                  <div ref = {scroll}
+                  <div
+                    ref={scroll}
                     className={
                       message.senderId === currentUser
                         ? "message own"

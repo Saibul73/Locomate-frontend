@@ -5,6 +5,11 @@ import { getUser } from "../../Api/UserRequest";
 
 const Conversation = ({ data, currentUserId ,online}) => {
   const [userData, setUserData] = useState(null);
+  const imageURL =
+    process.env.REACT_APP_PHASE === "production"
+      ? process.env.REACT_APP_PUBLIC_FOLDER_HOSTED
+      : process.env.REACT_APP_PUBLIC_FOLDER;
+
   useEffect(() => {
     const userId = data.members.find((id) => id !== currentUserId);
     const getUserData = async () => {
@@ -25,8 +30,8 @@ const Conversation = ({ data, currentUserId ,online}) => {
         <img
           src={
             userData?.profilePicture
-              ? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture
-              : process.env.REACT_APP_PUBLIC_FOLDER + "profiledemo.webp"
+              ? imageURL + userData.profilePicture
+              : imageURL + "profiledemo.webp"
           }
           alt=""
           className="followerImage"

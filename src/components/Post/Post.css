@@ -46,9 +46,6 @@
   font-size: 10px;
 }
 
-
-
-
 .post-profilePIc {
   width: 3rem;
   height: 3rem;
@@ -65,7 +62,7 @@
   height: 100%;
 }
 
-.delete{
+.delete {
   display: flex;
   flex-direction: row;
   align-items: center;

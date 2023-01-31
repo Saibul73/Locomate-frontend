@@ -22,7 +22,11 @@ const Post = ({ data }) => {
   const postData = useSelector((state) => state.postReducer.posts);
   const [liked, setLiked] = useState(data.likes.includes(user._id));
   const [likes, setLikes] = useState(data.likes.length);
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const imageURL =
+    process.env.REACT_APP_PHASE === "production"
+      ? process.env.REACT_APP_PUBLIC_FOLDER_HOSTED
+      : process.env.REACT_APP_PUBLIC_FOLDER;
+  const serverPublic = imageURL;
   const [open, setOpen] = useState(false);
   const [owner, setOwner] = useState("");
 

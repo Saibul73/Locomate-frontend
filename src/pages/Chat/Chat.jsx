@@ -20,6 +20,7 @@ function Chat() {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receiveMessage, setReceiveMessage] = useState(null);
+  const socketUrl = process.env.REACT_APP_PHASE === "production" ? process.env.REACT_APP_SOCKET_HOSTED : process.env.REACT_APP_SOCKET_TESTING
 
   const socket = useRef();
 
@@ -31,7 +32,7 @@ function Chat() {
   }, [sendMessage]);
 
   useEffect(() => {
-    socket.current = io("http://localhost:8800");
+    socket.current = io(socketUrl);
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
