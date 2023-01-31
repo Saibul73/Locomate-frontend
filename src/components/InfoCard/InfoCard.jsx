@@ -6,6 +6,7 @@ import { logOut } from "../../Actions/AuthAction";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import ProfileModal from "../ProfileModal/ProfileModal";
+import PasswordModal from "../PasswordModal/PasswordModal";
 import { useEffect } from "react";
 import * as UserApi from "../../Api/UserRequest.js";
 
@@ -17,6 +18,9 @@ export default function InfoCard() {
   const profileUserId = params.id;
   const [profileUser, setProfileUser] = useState({});
   const user = useSelector((state) => state.authReducer.authData.user);
+  const [privacy, setPrivacy] = useState(false);
+  const [passwordOpen, setPasswordOpen] = useState(false);
+
   useEffect(() => {
     const fetchProfileUser = async () => {
       if (profileUserId === user._id) {
@@ -32,6 +36,11 @@ export default function InfoCard() {
   const handleLogout = () => {
     dispatch(logOut());
     navigate("/auth");
+  };
+
+  const handlePrivacy = () => {
+    const prev = privacy;
+    setPrivacy(!prev);
   };
   return (
     <div className="InfoCard">
@@ -75,12 +84,30 @@ export default function InfoCard() {
         </span>
         <span> {profileUser.worksAt}</span>
       </div>
-      {user._id === profileUserId?<div className="infobuttons">
-        <button className="  privacy-button">Privacy & Security</button>
-        <button className="button logout-button" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>:""}
+      {user._id === profileUserId ? (
+        <div className="infobuttons">
+          <button className="privacy-button" onClick={handlePrivacy}>
+            Privacy & Security
+          </button>
+          <button className="button logout-button" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
+      {privacy ? (
+        <div className="changePass">
+          <div onClick={() => setPasswordOpen(true)} style={{cursor:"pointer"}}>Change password</div>
+          <PasswordModal
+            passwordOpen={passwordOpen}
+            setPasswordOpen={setPasswordOpen}
+            data={user}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

@@ -43,3 +43,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.changePass{
+    border-top: 1px solid;
+    border-color: rgb(152, 149, 149);
+padding-top: .5rem;
+}

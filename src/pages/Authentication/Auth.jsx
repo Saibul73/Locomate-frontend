@@ -11,7 +11,6 @@ export default function Auth() {
   
   const [isSignUp, setIsSignUP] = useState(true);
   const [validation, setValidation] = useState(false);
-  console.log(loading);
   const [data, setData] = useState({
     firstname: "",
     password: "",

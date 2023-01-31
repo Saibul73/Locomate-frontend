@@ -8,6 +8,8 @@ import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
 import { uploadImage, uploadPost } from "../../Actions/uploadAction";
 import { toast } from "react-toastify";
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/dist/ReactCrop.css'
 
 export default function PostShare() {
   const loading = useSelector((state) => state.postReducer.uploading);
@@ -17,6 +19,13 @@ export default function PostShare() {
   const desc = useRef();
   const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [crop, setCrop] = useState({
+    unit: '%', // Can be 'px' or '%'
+    x: 25,
+    y: 25,
+    width: 50,
+    height: 50
+  })
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -126,7 +135,10 @@ export default function PostShare() {
         {image && (
           <div className="previewImage">
             <UilTimes onClick={() => setImage(null)} />
-            <img src={URL.createObjectURL(image)} alt="" />
+            {/* <ReactCrop crop={crop} onChange={(crop) => setCrop(crop)} >
+
+            </ReactCrop> */}
+          <img src={URL.createObjectURL(image)} alt="" />
           </div>
         )}
       </div>

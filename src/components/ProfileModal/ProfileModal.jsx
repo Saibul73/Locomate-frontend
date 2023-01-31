@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 import { uploadImage } from "../../Actions/uploadAction";
 import { updateUser } from "../../Actions/userAction";
 import { toast } from "react-toastify";
+import { message } from "antd";
 
 function ProfileModal({ modalOpened, setModalOpened, data }) {
   const theme = useMantineTheme();
   const { password, ...other } = data;
-  console.log(other)
   const [formData, setFormData] = useState(other);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
@@ -41,6 +41,10 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(formData.firstname === "" || formData.lastname===""){
+      message.error("Name field should not be empty")
+      return 
+    }
     let UserData = formData;
     if (profileImage) {
       const data = new FormData();

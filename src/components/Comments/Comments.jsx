@@ -57,7 +57,6 @@ function Comments({ data }) {
       <div className="container">
         <div>
           {comments?.map((result) => {
-            console.log(result,"inside theeeeee")
             return (
               <div className="commdata">
                {user._id === result.user?<span className="comdelete">
