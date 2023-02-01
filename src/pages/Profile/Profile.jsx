@@ -9,17 +9,23 @@ import FollowersCard from "../../components/FollowersCard/FollowersCard";
 export const Profile = () => {
   return (
     <div className="profile">
+      <div className="leftProfile">
+
       <ProfileLeft />
+      </div>
 
       <div className="Profile-center">
         <ProfileCard location="profilePage" />
-        <PostSide />
+        <PostSide location="profilePage" />
       </div>
-      <div>
-      <RightSide />
-      <FollowersCard />
+      <div className="profilerightside">
+        <div >
+          <RightSide location="profilePage" />
+        </div>
+        <div className="test">
+          <FollowersCard />
+        </div>
       </div>
-      
     </div>
   );
 };

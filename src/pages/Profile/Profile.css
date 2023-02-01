@@ -1,10 +1,26 @@
-.profile{
-    display: grid;
-    grid-template-columns: 18rem auto 20rem;
-    gap: 1rem;
+.profile {
+  display: grid;
+  grid-template-columns: 18rem auto 20rem;
+  gap: 1rem;
 }
-.Profile-center{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.Profile-center {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .profilerightside {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+  }
+  .leftProfile {
+    display: none;
+  }
+  .profile {
+    grid-template-columns: auto;
+  }
 }

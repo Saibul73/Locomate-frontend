@@ -3,11 +3,11 @@ import "./PostSide.css";
 import PostShare from "../PostShare/PostShare";
 import Posts from "../Posts/Posts";
 
-export default function PostSide() {
+export default function PostSide({location}) {
   return (
     <div className="PostSide">
-      <PostShare />
-      <Posts />
+      <div className={location === "profilePage"?'':"share_component"}><PostShare /></div>
+      <div className={location === "profilePage"?'':"post_component"}><Posts /></div>
     </div>
   );
 }

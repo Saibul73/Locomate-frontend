@@ -20,7 +20,10 @@ function Chat() {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receiveMessage, setReceiveMessage] = useState(null);
-  const socketUrl = process.env.REACT_APP_PHASE === "production" ? process.env.REACT_APP_SOCKET_HOSTED : process.env.REACT_APP_SOCKET_TESTING
+  const socketUrl =
+    process.env.REACT_APP_PHASE === "production"
+      ? process.env.REACT_APP_SOCKET_HOSTED
+      : process.env.REACT_APP_SOCKET_TESTING;
 
   const socket = useRef();
 
@@ -59,23 +62,27 @@ function Chat() {
     getChats();
   }, [user]);
 
-  const checkOnlineStatus =(chat)=>{
-    const chatMembers = chat.members.find((member)=>member!==user._id)
-    const online = onlineUsers.find((user)=>user.userId===chatMembers)
-    return online?true:false;
-  }
+  const checkOnlineStatus = (chat) => {
+    const chatMembers = chat.members.find((member) => member !== user._id);
+    const online = onlineUsers.find((user) => user.userId === chatMembers);
+    return online ? true : false;
+  };
   return (
     <div className="Chat">
       {/* Left side */}
       <div className="Left-side-chat">
-        <LogoSearch />
+        {/* <LogoSearch /> */}
         <div className="Chat-container">
           <h2>Chats</h2>
           <div className="Chat-list">
             {chats.map((chat) => {
               return (
                 <div onClick={() => setCurrentChat(chat)}>
-                  <Conversation data={chat} currentUserId={user._id} online={checkOnlineStatus(chat)} />
+                  <Conversation
+                    data={chat}
+                    currentUserId={user._id}
+                    online={checkOnlineStatus(chat)}
+                  />
                 </div>
               );
             })}
@@ -85,16 +92,19 @@ function Chat() {
 
       {/* right side */}
       <div className="Right-side-chat">
-        <div style={{ width: "20rem", alignSelf: "flex-end" }}>
-       
-        <RightSide/>
+        <div style={{ width: "100%", alignSelf: "flex-end" }}>
+          <div className="home_rightside">
+            <RightSide />
+          </div>
         </div>
-        <ChatBox
-          chat={currentChat}
-          currentUser={user._id}
-          setSendMessage={setSendMessage}
-          receiveMessage={receiveMessage}
-        />
+        <div className="chatArea">
+          <ChatBox
+            chat={currentChat}
+            currentUser={user._id}
+            setSendMessage={setSendMessage}
+            receiveMessage={receiveMessage}
+          />
+        </div>
       </div>
     </div>
   );

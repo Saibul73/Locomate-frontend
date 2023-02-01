@@ -14,9 +14,13 @@ function Home() {
       <div className="home_postside">
         <PostSide />
       </div>
-      <div className="test">
-        <RightSide />
-        <FollowersCard />
+      <div className="home_rightside">
+        <div>
+          <RightSide />
+        </div>
+        <div className="test">
+          <FollowersCard />
+        </div>
       </div>
     </div>
   );

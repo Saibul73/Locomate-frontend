@@ -71,4 +71,8 @@
   .follower.conversation > div > .name {
     display: none;
   }
+  .chatArea{
+    margin-bottom: 3rem;
+    margin-top: 0;
+  }
 }

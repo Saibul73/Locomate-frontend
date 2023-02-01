@@ -106,18 +106,18 @@ export default function PostShare() {
             <UilScenery />
             Photo
           </div>
-          <div className="option" style={{ color: "var(--video)" }}>
+          {/* <div className="option" style={{ color: "var(--video)" }}>
             <UilPlayCircle />
             Video
-          </div>
-          <div className="option" style={{ color: "var(--location)" }}>
+          </div> */}
+          {/* <div className="option" style={{ color: "var(--location)" }}>
             <UilLocationPoint />
             Location
-          </div>
-          <div className="option" style={{ color: "var(--shedule)" }}>
+          </div> */}
+          {/* <div className="option" style={{ color: "var(--shedule)" }}>
             <UilSchedule />
             Shedule
-          </div>
+          </div> */}
           <div>
             <button
               className="button ps-button"

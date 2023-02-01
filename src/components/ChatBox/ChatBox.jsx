@@ -71,7 +71,7 @@ export default function ChatBox({
     // send message to database
     try {
       if (newMessage === "") {
-        return toast.error("Comment Empty");
+        return toast.error("Type a message");
       }
       const { data } = await addMessage(message);
       setMessages([...messages, data]);

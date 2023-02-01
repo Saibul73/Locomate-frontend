@@ -1,17 +1,45 @@
-.Home{
-    position: relative;
-    display: grid;
-    grid-template-columns: 18rem auto 20rem;
-    gap: 1rem;
+.Home {
+  position: relative;
+  display: grid;
+  grid-template-columns: 18rem auto 20rem;
+  gap: 1rem;
 }
+/* .share_component{
+    position: fixed;
+    background-color: black;
+    width: 100%;
+} */
 
+@media screen and (max-width: 1024px) {
+  .test {
+    display: none;
+  }
 
-@media screen and (max-width:1024px){
-    .test{
-        display: none;
-    }
+  .Home {
+    grid-template-columns: auto;
+  }
+  .home_profile {
+    display: none;
+  }
+  .home_postside {
+    margin-bottom: 4rem;
+  }
+  .home_rightside {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+  }
+  .share_component {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+  }
 
-    .Home{
-        grid-template-columns: 18rem auto 
-    }
+  .post_component {
+    margin-top: 7.5rem;
+  }
 }
