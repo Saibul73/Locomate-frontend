@@ -10,6 +10,7 @@ import { uploadImage, uploadPost } from "../../Actions/uploadAction";
 import { toast } from "react-toastify";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import { message } from "antd";
 
 export default function PostShare() {
   const loading = useSelector((state) => state.postReducer.uploading);
@@ -58,6 +59,9 @@ export default function PostShare() {
     if (!desc.current?.value && !image) {
       toast.error("Field Empty");
       return;
+    }else if(desc.current?.value.indexOf(' ') === 0){
+      message.error("Can't share blankspace at the beginning")  
+      return
     }
 
     const newPost = {

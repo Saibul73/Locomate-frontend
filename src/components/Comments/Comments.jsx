@@ -8,6 +8,7 @@ import { format } from "timeago.js";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { commentFetching } from "../../Api/PostRequest";
 import { toast } from "react-toastify";
+import {message} from "antd"
 
 function Comments({ data }) {
   const [commentString, setCommentString] = useState("");
@@ -40,7 +41,11 @@ function Comments({ data }) {
       user: user._id,
     };
     if(commentString === ''){
-        
+      message.error("Write something")
+        return 
+    }else if(commentString.indexOf(' ') === 0){
+      message.error("Can't use white space at the beginning")
+      return
     }
     dispatch(addComment(data._id, comment));
     setCommentString("");

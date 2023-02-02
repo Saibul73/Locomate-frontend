@@ -71,7 +71,11 @@ export default function ChatBox({
     // send message to database
     try {
       if (newMessage === "") {
-        return toast.error("Type a message");
+        toast.error("Type a message");
+        return 
+      }else if (newMessage.indexOf(' ') === 0){
+        toast.error("Can't send blankspace at the beginning")
+        return
       }
       const { data } = await addMessage(message);
       setMessages([...messages, data]);
