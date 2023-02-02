@@ -14,7 +14,7 @@ import { getUser } from "../../Api/UserRequest";
 import { deletePost } from "../../Actions/PostAction";
 import Comments from "../Comments/Comments";
 import { useEffect } from "react";
-import {format} from 'timeago.js'
+import { format } from "timeago.js";
 
 const Post = ({ data }) => {
   const dispatch = useDispatch();
@@ -79,14 +79,14 @@ const Post = ({ data }) => {
             <img
               src={
                 owner?.profilePicture
-                  ? serverPublic + owner.profilePicture
-                  : serverPublic + "profiledemo.webp"
+                  ? imageURL + owner.profilePicture
+                  : imageURL + "profiledemo.webp"
               }
               alt=""
             />
           </div>
           <div className="post-profileName">
-            <span>{owner.firstname +" "+ owner.lastname}</span>
+            <span>{owner.firstname + " " + owner.lastname}</span>
             <span>{format(data.createdAt)}</span>
           </div>
         </div>
@@ -115,8 +115,13 @@ const Post = ({ data }) => {
         )}
       </div>
 
-      <img
+      {/* <img
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
+        alt=""
+      /> */}
+
+      <img
+        src={data.image ? imageURL + data.image : ""}
         alt=""
       />
 
