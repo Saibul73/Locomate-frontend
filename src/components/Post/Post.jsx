@@ -16,7 +16,7 @@ import Comments from "../Comments/Comments";
 import { useEffect } from "react";
 import { format } from "timeago.js";
 
-const Post = ({ data }) => {
+const Post = ({ data ,id}) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
   const postData = useSelector((state) => state.postReducer.posts);
@@ -72,7 +72,7 @@ const Post = ({ data }) => {
   //===========================================================
 
   return (
-    <div className="Post">
+    <div className="Post" id={id}>
       <div className="post-head">
         <div className="post-head-left">
           <div className="post-profilePIc">
@@ -128,7 +128,7 @@ const Post = ({ data }) => {
       <div className="postReact">
         <img src={liked ? Heart : NotLike} alt="" onClick={handleLike} />
         <FaRegCommentDots size={24} onClick={handleCommentSection} />
-        <img src={Share} alt="" />
+        {/* <img src={Share} alt="" /> */}
       </div>
 
       <span style={{ fontSize: "12px" }}>{likes} likes</span>
