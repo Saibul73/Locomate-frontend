@@ -35,7 +35,7 @@ export default function PostShare() {
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const fileExtension = event.target.files[0].name.split(".").pop();
-      if (fileExtension === "pdf" || "xml") {
+      if (fileExtension === "pdf") {
         toast.error("This file type not allowed");
         return;
       }
