@@ -34,12 +34,8 @@ export default function PostShare() {
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      if (
-        event.target.files[0].type !== "image/jpeg" &&
-        event.target.files[0].type !== "image/jpg" &&
-        event.target.files[0].type !== "image/png" &&
-        event.target.files[0].type !== "image/svg"
-      ) {
+      const fileExtension = event.target.files[0].name.split(".").pop();
+      if (fileExtension === "pdf" || "xml") {
         toast.error("This file type not allowed");
         return;
       }
@@ -56,12 +52,10 @@ export default function PostShare() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!desc.current?.value && !image) {
+    if (!desc.current?.value.trim() && !image) {
       toast.error("Field Empty");
+      reset();
       return;
-    }else if(desc.current?.value.indexOf(' ') === 0){
-      message.error("Can't share blankspace at the beginning")  
-      return
     }
 
     const newPost = {

@@ -44,6 +44,9 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
     if(formData.firstname === "" || formData.lastname===""){
       message.error("Name field should not be empty")
       return 
+    }else if(!formData.firstname.trim() || !formData.lastname.trim()){
+      message.error("Name field should not be empty") 
+      return
     }
     let UserData = formData;
     if (profileImage) {
